@@ -1,3 +1,8 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+
 [project]
 name = "skyweaver"
 version = "0.1.0"
@@ -39,7 +44,7 @@ dev = [
 fmt = "ruff format"
 lint = "ruff check --fix"
 check = "pyright"
-coverage = { cmd = "pytest --cov=skyweaver --cov-report=term-missing", env = { PYTHONPATH = "src" } }
+coverage = { cmd = "pytest --cov=skyweaver --cov-report=term-missing"}
 all = ["fmt", "lint", "check", "coverage"]
 
 [tool.ruff]
@@ -57,12 +62,12 @@ select = [
 ]
 
 [tool.ruff.lint.isort]
-known-first-party = ["solshade"]
+known-first-party = ["skyweaver"]
 
 [tool.pyright]
 venvPath = "."
 venv = ".venv"
-pythonVersion = "3.11"
+pythonVersion = "3.13"
 reportUnknownMemberType = false
 reportUnknownVariableType = false
 include = ["src"]
