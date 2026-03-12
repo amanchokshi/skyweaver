@@ -1,0 +1,70 @@
+[project]
+name = "skyweaver"
+version = "0.1.0"
+description = "A Python framework for simulating satellite orbits and how they weave tracks across telescope beams"
+keywords = ["satellite", "simulation", "orbit", "radio", "astronomy"]
+authors = [{ name = "Aman Chokshi", email = "aman.chokshi@mcgill.ca" }]
+license = { text = "MIT" }
+readme = "README.md"
+requires-python = ">=3.13"
+classifiers = [
+  "Programming Language :: Python :: 3",
+  "License :: OSI Approved :: MIT License",
+  "Operating System :: OS Independent",
+]
+
+dependencies = [
+    "cmasher>=1.9.2",
+    "matplotlib>=3.10.8",
+    "numpy>=2.4.3",
+    "sgp4>=2.25",
+    "skyfield>=1.54",
+]
+
+[dependency-groups]
+dev = [
+    "ipympl>=0.10.0",
+    "ipython>=9.11.0",
+    "jupyter>=1.1.1",
+    "jupyterlab>=4.5.6",
+    "poethepoet>=0.42.1",
+    "pyright>=1.1.408",
+    "pytest>=9.0.2",
+    "pytest-cov>=7.0.0",
+    "ruff>=0.15.5",
+]
+
+
+  [tool.poe.tasks]
+fmt = "ruff format"
+lint = "ruff check --fix"
+check = "pyright"
+coverage = { cmd = "pytest --cov=skyweaver --cov-report=term-missing", env = { PYTHONPATH = "src" } }
+all = ["fmt", "lint", "check", "coverage"]
+
+[tool.ruff]
+target-version = "py311"
+line-length = 128
+src = ["src"]
+
+[tool.ruff.lint]
+select = [
+    "A",  # built-in shadowing
+    "E",  # style
+    "F",  # pyflakes
+    "I",  # import sorting
+    "N",  # naming
+]
+
+[tool.ruff.lint.isort]
+known-first-party = ["solshade"]
+
+[tool.pyright]
+venvPath = "."
+venv = ".venv"
+pythonVersion = "3.11"
+reportUnknownMemberType = false
+reportUnknownVariableType = false
+include = ["src"]
+exclude = ["tests", "**/__pycache__"]
+
