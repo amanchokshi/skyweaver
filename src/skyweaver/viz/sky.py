@@ -35,15 +35,16 @@ def plot_sky_track(
         ax = cast(PolarAxes, ax0)
 
     theta = np.deg2rad(track.azimuth_deg)
-    radius = 90.0 - track.altitude_deg
+    radius = track.altitude_deg
 
     ax.plot(theta, radius, lw=1.5)
 
     ax.set_title(f"Sky track: {track.orbit.name} at {track.observatory.name}")
     ax.set_theta_zero_location("N")
     ax.set_theta_direction(-1)
-    ax.set_rlim(90.0, 0.0)
-    ax.set_rlabel_position(135.0)
+    ax.set_ylim(90, 0)
+    ax.set_rgrids([15, 30, 45, 60, 75, 90])
+    ax.set_rlabel_position(67.5)
     ax.grid(True)
 
     return ax
