@@ -1,7 +1,6 @@
 [build-system]
-requires = ["hatchling"]
+requires = ["hatchling >= 1.26"]
 build-backend = "hatchling.build"
-
 
 [project]
 name = "skyweaver"
@@ -28,6 +27,31 @@ dependencies = [
     "skyfield>=1.54",
 ]
 
+[project.urls]
+Homepage = "https://github.com/amanchokshi/skyweaver"
+Documentation = "https://skyweaver.readthedocs.io"
+Repository = "https://github.com/amanchokshi/skyweaver"
+Issues = "https://github.com/amanchokshi/skyweaver/issues"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/skyweaver"]
+
+[tool.hatch.build.targets.sdist]
+include = [
+  "src/skyweaver/**",
+  "pyproject.toml",
+  "README.md",
+  "LICENSE",
+]
+
+[tool.setuptools]
+package-dir = { "" = "src" }
+packages = { find = { where = ["src"] } }
+
+[tool.uv]
+package = true
+
+
 [dependency-groups]
 dev = [
     "ipympl>=0.10.0",
@@ -53,8 +77,7 @@ dev = [
     "ruff>=0.15.5",
 ]
 
-
-  [tool.poe.tasks]
+[tool.poe.tasks]
 fmt = "ruff format"
 lint = "ruff check --fix"
 check = "pyright"
@@ -86,4 +109,3 @@ reportUnknownMemberType = false
 reportUnknownVariableType = false
 include = ["src"]
 exclude = ["tests", "**/__pycache__"]
-
