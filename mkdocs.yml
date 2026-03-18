@@ -1,0 +1,78 @@
+site_name: skyweaver
+site_description: Satellite sky track simulation
+
+site_url: https://skyweaver.readthedocs.io/
+repo_url: https://github.com/amanchokshi/skyweaver
+repo_name: amanchokshi/skyweaver
+
+theme:
+  name: material
+  features:
+    - navigation.instant
+    - navigation.tracking
+    - navigation.top
+    - navigation.indexes
+    - content.code.copy
+    - toc.integrate
+  palette:
+    - scheme: slate
+      primary: teal
+      accent: teal
+  icon:
+    logo: octicons/issue-opened-24
+    repo: fontawesome/brands/github-alt
+  favicon: imgs/favicon.ico
+
+plugins:
+  - gen-files:
+      scripts:
+        - docs/gen_api.py
+  - autorefs
+  - mkdocstrings:
+      handlers:
+        python:
+          paths:
+            - src
+          options:
+            docstring_style: numpy
+            merge_init_into_class: true
+            separate_signature: true
+            show_source: true
+            show_root_full_path: false
+            show_symbol_type_heading: true
+            show_if_no_docstring: false
+  - mkdocs-jupyter:
+      execute: false           # set true if you want to run cells on build
+      allow_errors: false
+      include_source: true     # show the notebook’s code cells
+      ignore_h1_titles: true   # let MkDocs/MateriaI handle page titles
+  - search
+
+markdown_extensions:
+  - admonition
+  - pymdownx.details
+  - pymdownx.highlight
+  - pymdownx.inlinehilite
+  - pymdownx.superfences
+  - toc:
+      permalink: true
+      toc_depth: 2
+
+watch:
+  - src
+  - docs
+
+nav:
+  - Home: index.md
+  - Installation: guides/install.md
+  - Getting Started:
+    - guides/index.md
+    - Skyweaver Tutorial: notebooks/skyweaver_example.ipynb  
+  - API Reference:
+    - api/index.md
+    - skyweaver.observatories: api/skyweaver.observatories.md
+    - skyweaver.timegrid: api/skyweaver.timegrid.md
+    - skyweaver.orbits: api/skyweaver.orbits.md
+    - skyweaver.tracks: api/skyweaver.tracks.md
+    - skyweaver.viz.ground: api/skyweaver.viz.ground.md
+    - skyweaver.viz.sky: api/skyweaver.viz.sky.md
