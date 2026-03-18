@@ -19,9 +19,11 @@ classifiers = [
 ]
 
 dependencies = [
+    "basemap>=2.0.0",
     "cmasher>=1.9.2",
+    "healpy>=1.19.0",
     "matplotlib>=3.10.8",
-    "numpy>=2.4.3",
+    "numpy<=2.4",
     "sgp4>=2.25",
     "skyfield>=1.54",
 ]
