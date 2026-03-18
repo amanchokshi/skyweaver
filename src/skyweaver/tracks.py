@@ -19,7 +19,6 @@ class GroundTrack:
     timegrid: TimeGrid
     latitude_deg: np.ndarray
     longitude_deg: np.ndarray
-    elevation_m: np.ndarray
 
     @property
     def n_times(self) -> int:
@@ -180,17 +179,12 @@ def ground_track(orbit: OrbitSpec, timegrid: TimeGrid) -> GroundTrack:
 
     latitude_deg = np.asarray(subpoint.latitude.degrees, dtype=float)
     longitude_deg = np.asarray(subpoint.longitude.degrees, dtype=float)
-    elevation_m = np.broadcast_to(
-        np.asarray(subpoint.elevation.m, dtype=float),
-        latitude_deg.shape,
-    ).astype(float, copy=False)
 
     return GroundTrack(
         orbit=orbit,
         timegrid=timegrid,
         latitude_deg=latitude_deg,
         longitude_deg=longitude_deg,
-        elevation_m=elevation_m,
     )
 
 

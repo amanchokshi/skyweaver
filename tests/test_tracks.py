@@ -55,7 +55,6 @@ def test_ground_track_array_lengths_match_timegrid() -> None:
 
     assert len(track.latitude_deg) == timegrid.n_times
     assert len(track.longitude_deg) == timegrid.n_times
-    assert len(track.elevation_m) == timegrid.n_times
     assert track.n_times == timegrid.n_times
 
 
