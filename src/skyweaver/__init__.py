@@ -5,7 +5,7 @@ from importlib.metadata import PackageNotFoundError, version
 from skyweaver.observatories import Observatory
 from skyweaver.orbits import OrbitSpec
 from skyweaver.timegrid import TimeGrid
-from skyweaver.tracks import GroundTrack, SkyTrack, ground_track, sky_track
+from skyweaver.tracks import GroundTrack, SkyPass, SkyTrack, ground_track, sky_track
 
 try:
     __version__ = version("skyweaver")
@@ -17,6 +17,7 @@ __all__ = [
     "Observatory",
     "OrbitSpec",
     "SkyTrack",
+    "SkyPass",
     "TimeGrid",
     "ground_track",
     "sky_track",
