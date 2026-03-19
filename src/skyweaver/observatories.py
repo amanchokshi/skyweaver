@@ -62,7 +62,7 @@ class Observatory:
 
     @classmethod
     def hera(cls) -> "Observatory":
-        return cls("HERA", -30.7215, 21.4283, 1050.0)
+        return cls("HERA", -30.7215, 21.4283, 1073.0)
 
     @classmethod
     def ska_low(cls) -> "Observatory":
@@ -88,6 +88,10 @@ class Observatory:
     def hirax(cls) -> "Observatory":
         return cls("HIRAX", -30.721, 21.411, 1080.0)
 
+    @classmethod
+    def gmrt(cls) -> "Observatory":
+        return cls("GMRT", 19.093, 74.056, 497.0)
+
 
 # ---- Initialize registry with built-ins ----
 
@@ -100,3 +104,4 @@ Observatory.ovro_lwa()
 Observatory.albatros()
 Observatory.chord()
 Observatory.hirax()
+Observatory.gmrt()

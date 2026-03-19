@@ -21,6 +21,7 @@ def test_builtin_registry_contains_expected_names() -> None:
     expected = {
         "ALBATROS",
         "CHORD",
+        "GMRT",
         "HERA",
         "HIRAX",
         "LOFAR",
@@ -113,13 +114,14 @@ def test_registry_overwrites_same_name_with_latest_instance(
     [
         ("mwa", "MWA", -26.703319, 116.670815, 377.83),
         ("lofar", "LOFAR", 52.9088, 6.8677, 15.0),
-        ("hera", "HERA", -30.7215, 21.4283, 1050.0),
+        ("hera", "HERA", -30.7215, 21.4283, 1073.0),
         ("ska_low", "SKA_LOW", -26.824722, 116.764448, 365.0),
         ("nenufar", "NENUFAR", 47.3765, 2.1924, 130.0),
         ("ovro_lwa", "OVRO_LWA", 37.2398, -118.2817, 1183.0),
         ("albatros", "ALBATROS", 79.417183, -90.76735, 189.0),
         ("chord", "CHORD", 49.3207, -119.6200, 545.0),
         ("hirax", "HIRAX", -30.721, 21.411, 1080.0),
+        ("gmrt", "GMRT", 19.093, 74.056, 497.0),
     ],
 )
 def test_builtin_constructors(

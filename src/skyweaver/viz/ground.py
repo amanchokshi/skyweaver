@@ -53,20 +53,34 @@ def plot_ground_track(
         ax=ax,
     )
 
-    land_color = to_hex(cmr.pride(0.36))
+    land_color = to_hex(cmr.pride(0.73))
+    water_color = to_hex(cmr.pride(0.3))
 
-    m.fillcontinents(color=land_color, lake_color=land_color, zorder=42)
-    m.drawcountries(color="whitesmoke", zorder=42, linewidth=0.7)
-    m.drawcoastlines(color="whitesmoke", zorder=42, linewidth=0.7)
+    m.drawcoastlines(color="#222222", linewidth=0.3)
+    m.drawmapboundary(fill_color=water_color)
+    m.fillcontinents(color=land_color, lake_color=water_color)
     m.drawparallels(np.arange(-90.0, 91.0, 30.0), linewidth=0.5, alpha=0.7)
     m.drawmeridians(np.arange(-180.0, 181.0, 60.0), linewidth=0.5, alpha=0.7)
 
+    lon = track.longitude_deg.copy()
+    lat = track.latitude_deg.copy()
+
+    # find jumps across the dateline
+    jumps = np.abs(np.diff(lon)) > 180.0
+
+    # insert NaNs after jump locations
+    lon_plot = lon.astype(float)
+    lat_plot = lat.astype(float)
+
+    lon_plot = np.insert(lon_plot, np.where(jumps)[0] + 1, np.nan)
+    lat_plot = np.insert(lat_plot, np.where(jumps)[0] + 1, np.nan)
+
     ax.plot(
-        track.longitude_deg,
-        track.latitude_deg,
+        lon_plot,
+        lat_plot,
         lw=0.1,
         alpha=0.9,
-        color=cmr.pride(0.77),
+        color="whitesmoke",
     )
 
     if observatories is not None:
@@ -80,7 +94,7 @@ def plot_ground_track(
                 y,
                 s=121,
                 marker=r"$⬢$",
-                color=cmr.pride(0.1),
+                color=cmr.pride(0.6),
                 edgecolors="whitesmoke",
                 linewidths=0.7,
                 zorder=49,
@@ -101,7 +115,7 @@ def plot_ground_track(
                         facecolor="whitesmoke",
                         edgecolor="#222222",
                         linewidth=0.4,
-                        alpha=0.9,
+                        alpha=1,
                     ),
                 )
 
