@@ -67,7 +67,7 @@ nav:
   - Installation: guides/install.md
   - Getting Started:
     - guides/index.md
-    - Skyweaver Tutorial: notebooks/skyweaver_example.ipynb  
+    - Skyweaver Tutorial: notebooks/skyweaver_tutorial.ipynb  
   - API Reference:
     - api/index.md
     - skyweaver.observatories: api/skyweaver.observatories.md
