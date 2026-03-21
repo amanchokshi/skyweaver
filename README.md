@@ -16,7 +16,7 @@
 
 ---
 
-`skyweaver` is a python framework for simulating satellite orbits and how they weave tracks across telescope beams
+A python framework for simulating satellite orbits and how they weave tracks across telescope beams
 
 - trace **ground tracks** across Earth  
 - produce **sky tracks** as seen by observatories  
