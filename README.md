@@ -16,17 +16,17 @@
 
 ---
 
-`skyweaver` is a Python framework for exploring satellite orbits:
+`skyweaver` is a python framework for simulating satellite orbits and how they weave tracks across telescope beams
 
 - trace **ground tracks** across Earth  
 - produce **sky tracks** as seen by observatories  
 - segment into **above-horizon passes**  
 - accumulate **HEALPix sky coverage maps**
-A Python framework for simulating satellite orbits and how they weave tracks across telescope beams
+
 
 ---
 
-`skyweaver` is designed to install cleanly with a single invocation of the standard Python package tool:
+`skyweaver` is designed to install cleanly with a single invocation of the standard python package tool:
 
 ```bash
 pip install skyweaver
