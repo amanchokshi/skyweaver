@@ -11,7 +11,7 @@ from matplotlib import colormaps
 from matplotlib.colors import Colormap
 from matplotlib.projections.polar import PolarAxes
 
-from skyweaver import SkyPass, SkyTrack
+from skyweaver.tracks import SkyPass, SkyTrack
 
 
 def _plot_single_pass(

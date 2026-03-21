@@ -11,7 +11,7 @@ from matplotlib.axes import Axes
 from matplotlib.colors import to_hex
 from mpl_toolkits.basemap import Basemap
 
-from skyweaver import GroundTrack, Observatory
+from skyweaver.tracks import GroundTrack, Observatory
 
 
 def plot_ground_track(
