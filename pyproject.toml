@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "skyweaver"
-version = "0.1.1"
+version = "0.1.2"
 description = "A Python framework for simulating satellite orbits and how they weave tracks across telescope beams"
 keywords = ["satellite", "simulation", "orbit", "radio", "astronomy"]
 authors = [{ name = "Aman Chokshi", email = "aman.chokshi@mcgill.ca" }]
