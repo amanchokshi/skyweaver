@@ -12,17 +12,12 @@
 
 ---
 
-**Simulating how satellite orbits weave across telescope skies.**
-
----
-
 A python framework for simulating satellite orbits and how they weave tracks across telescope beams
 
 - trace **ground tracks** across Earth  
 - produce **sky tracks** as seen by observatories  
 - segment into **above-horizon passes**  
 - accumulate **HEALPix sky coverage maps**
-
 
 ---
 
