@@ -15,7 +15,7 @@ from matplotlib.projections.polar import PolarAxes
 from skyweaver.observatories import Observatory
 from skyweaver.orbits import OrbitSpec
 from skyweaver.timegrid import TimeGrid
-from skyweaver.tracks import SkyPass, SkyTrack, ground_track, sky_track
+from skyweaver.tracks import PassInterval, SkyPass, SkyTrack, ground_track, sky_track
 from skyweaver.viz import plot_ground_track, plot_sky_track, plot_sky_track_healpix
 from skyweaver.viz.sky import _plot_single_pass
 
@@ -37,11 +37,19 @@ def make_test_timegrid() -> TimeGrid:
     return TimeGrid(start=start, stop=stop, cadence_s=60.0)
 
 
+def make_test_interval() -> PassInterval:
+    return PassInterval(
+        start_utc=datetime(2026, 1, 1, 0, 0, 0, tzinfo=timezone.utc),
+        stop_utc=datetime(2026, 1, 1, 0, 0, 2, tzinfo=timezone.utc),
+    )
+
+
 def make_test_sky_pass() -> SkyPass:
     return SkyPass(
         orbit=make_test_orbit(),
         observatory=Observatory.get("MWA"),
-        timegrid=make_test_timegrid(),
+        interval=make_test_interval(),
+        cadence_s=1.0,
         start_index=0,
         stop_index=3,
         altitude_deg=np.array([10.0, 25.0, 40.0]),
@@ -117,7 +125,11 @@ def test_plot_single_pass_handles_empty_pass() -> None:
     empty_pass = SkyPass(
         orbit=make_test_orbit(),
         observatory=Observatory.get("MWA"),
-        timegrid=make_test_timegrid(),
+        interval=PassInterval(
+            start_utc=datetime(2026, 1, 1, 0, 0, 0, tzinfo=timezone.utc),
+            stop_utc=datetime(2026, 1, 1, 0, 0, 0, tzinfo=timezone.utc),
+        ),
+        cadence_s=1.0,
         start_index=0,
         stop_index=0,
         altitude_deg=np.array([]),
@@ -168,10 +180,11 @@ def test_plot_sky_track_handles_no_visible_passes() -> None:
     track = SkyTrack(
         orbit=make_test_orbit(),
         observatory=Observatory.get("MWA"),
-        timegrid=make_test_timegrid(),
         altitude_deg=np.array([-10.0, -5.0, 0.0]),
         azimuth_deg=np.array([0.0, 45.0, 90.0]),
         range_km=np.array([1000.0, 1001.0, 1002.0]),
+        cadence_s=60.0,
+        timegrid=make_test_timegrid(),
     )
 
     ax = plot_sky_track(track, cmap="viridis")
@@ -183,10 +196,11 @@ def test_plot_sky_track_single_pass_cmap_branch() -> None:
     track = SkyTrack(
         orbit=make_test_orbit(),
         observatory=Observatory.get("MWA"),
-        timegrid=make_test_timegrid(),
         altitude_deg=np.array([-5.0, 20.0, 30.0, -1.0]),
         azimuth_deg=np.array([0.0, 10.0, 20.0, 30.0]),
         range_km=np.array([1000.0, 1001.0, 1002.0, 1003.0]),
+        cadence_s=60.0,
+        timegrid=make_test_timegrid(),
     )
 
     ax = plot_sky_track(track, cmap="viridis")
@@ -198,10 +212,11 @@ def test_plot_sky_track_multiple_passes_cmap_branch() -> None:
     track = SkyTrack(
         orbit=make_test_orbit(),
         observatory=Observatory.get("MWA"),
-        timegrid=make_test_timegrid(),
         altitude_deg=np.array([-5.0, 20.0, 30.0, -1.0, 25.0, 35.0, -2.0]),
         azimuth_deg=np.array([0.0, 10.0, 20.0, 30.0, 180.0, 190.0, 200.0]),
         range_km=np.array([1000.0, 1001.0, 1002.0, 1003.0, 1004.0, 1005.0, 1006.0]),
+        cadence_s=60.0,
+        timegrid=make_test_timegrid(),
     )
 
     ax = plot_sky_track(track, cmap="viridis")
